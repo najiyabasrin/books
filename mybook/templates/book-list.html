@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container">
+    <div class="col-4"></div>
+    <div class="col-4">
+        <h2>
+            {{request.user}}
+        </h2>
+    </div>
+    <div class="col-4"></div>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if messages%}
+                {%for msg in messages%}
+                {{msg}}
+                {%endfor%}
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table">
+                <tr>
+                    <th>ID</th>
+                    <th>BOOK_NAME</th>
+                    <th>AUTHOR</th>
+                    <th>PRICE</th>
+                    <th>ACTION</th>
+                </tr>
+                {%for book in books%}
+                <tr>
+                    
+                    <td>{{book.id}}</td>
+                    <td> {{book.bookname}} </td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.price}}</td>
+                    <td>
+                        <a href="{%url 'book-detail' book.id%}" class="btn btn-outline-warning">detail</a>
+                        <a href="{%url 'book-delete' book.id%}" class="btn btn-outline-danger">delete</a>
+                        <a href="{%url 'book-change' book.id%}" class="btn btn-outline-danger">edit</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+</div>
+
+{%endblock%}
